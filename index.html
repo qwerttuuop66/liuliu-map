@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="/map.svg" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
@@ -32,11 +32,90 @@
       crossorigin=""
     ></script>
     <script defer src="script.js"></script>
-    <title>mapty // Map your workouts</title>
+    <title>Map your workouts</title>
   </head>
   <body>
+    <div id="map">
+      <div class="edit">
+        <ul>
+          <form class="editForm hidden" id="edit_workout_form">
+            <div class="form__row">
+              <label class="editForm__label">Type</label>
+              <select class="editForm__input editForm__input--type">
+                <option value="running">Running</option>
+                <option value="cycling">Cycling</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label class="editForm__label">Distance</label>
+              <input
+                type="number"
+                class="editForm__input editForm__input--distance"
+                placeholder="km"
+              />
+            </div>
+            <div class="form__row">
+              <label class="editForm__label">Duration</label>
+              <input
+                type="number"
+                class="editForm__input editForm__input--duration"
+                placeholder="min"
+              />
+            </div>
+            <div class="form__row">
+              <label class="editForm__label">Cadence</label>
+              <input
+                type="number"
+                class="editForm__input editForm__input--cadence"
+                placeholder="step/min"
+              />
+            </div>
+            <div class="form__row form__row--hidden">
+              <label class="editForm__label">Elev Gain</label>
+              <input
+                type="number"
+                class="editForm__input editForm__input--elevation"
+                placeholder="meters"
+              />
+            </div>
+            <!-- <div class="form__row form__row">
+              <label class="editForm__label">Month</label>
+              <select class="editForm__input editForm__input--month">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+              </select>
+            </div>
+            <div class="form__row form__row">
+              <label class="editForm__label">Day</label>
+              <input
+                type="number"
+                class="editForm__input editForm__input--day"
+                placeholder="day"
+              />
+            </div> -->
+            <div type="submit" class="editForm__btn" for="edit_workout_form">
+              Submit
+            </div>
+            <div class="closeEditForm__btn">Close</div>
+          </form>
+        </ul>
+      </div>
+    </div>
+
     <div class="sidebar">
-      <img src="logo.png" alt="Logo" class="logo" />
+      <img src="logo2.png" alt="Logo" class="logo" />
+      <!-- <i class="bi bi-pin logo-pin"></i> -->
+      <i class="bi bi-x sidebar-close"></i>
       <div class="dropdown">
         <button class="sortbtn">
           <i class="bi bi-filter-square"> Sort</i>
@@ -52,6 +131,18 @@
       </div>
       <ul class="workouts">
         <form class="form hidden" id="create_newWorkout_form">
+          <div>
+            <label
+              style="
+                color: #ececec;
+                text-align: center;
+                display: block;
+                font-size: 1rem;
+              "
+              >update your workout in this form</label
+            >
+          </div>
+
           <div class="form__row">
             <label class="form__label">Type</label>
             <select class="form__input form__input--type">
@@ -84,92 +175,16 @@
               placeholder="meters"
             />
           </div>
-          <div></div>
+
           <div type="submit" class="form__btn" for="create_newWorkout_form">
             Create
           </div>
         </form>
       </ul>
-      <ul>
-        <form class="editForm hidden" id="edit_workout_form">
-          <div class="form__row">
-            <label class="editForm__label">Type</label>
-            <select class="editForm__input editForm__input--type">
-              <option value="running">Running</option>
-              <option value="cycling">Cycling</option>
-            </select>
-          </div>
-          <div class="form__row">
-            <label class="editForm__label">Distance</label>
-            <input
-              type="number"
-              class="editForm__input editForm__input--distance"
-              placeholder="km"
-            />
-          </div>
-          <div class="form__row">
-            <label class="editForm__label">Duration</label>
-            <input
-              type="number"
-              class="editForm__input editForm__input--duration"
-              placeholder="min"
-            />
-          </div>
-          <div class="form__row">
-            <label class="editForm__label">Cadence</label>
-            <input
-              type="number"
-              class="editForm__input editForm__input--cadence"
-              placeholder="step/min"
-            />
-          </div>
-          <div class="form__row form__row--hidden">
-            <label class="editForm__label">Elev Gain</label>
-            <input
-              type="number"
-              class="editForm__input editForm__input--elevation"
-              placeholder="meters"
-            />
-          </div>
-          <!-- <div class="form__row form__row">
-            <label class="editForm__label">Month</label>
-            <select class="editForm__input editForm__input--month">
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="August">August</option>
-              <option value="September">September</option>
-              <option value="October">October</option>
-              <option value="November">November</option>
-              <option value="December">December</option>
-            </select>
-          </div>
-          <div class="form__row form__row">
-            <label class="editForm__label">Day</label>
-            <input
-              type="number"
-              class="editForm__input editForm__input--day"
-              placeholder="day"
-            />
-          </div> -->
-          <div type="submit" class="editForm__btn" for="edit_workout_form">
-            OK
-          </div>
-        </form>
-      </ul>
+
       <p class="copyright">
         &copy; Copyright by
-        <a
-          class="twitter-link"
-          target="_blank"
-          href="https://twitter.com/jonasschmedtman"
-          >Jonas Schmedtmann</a
-        >
-        &
+
         <a
           class="twitter-link"
           target="_blank"
@@ -180,6 +195,11 @@
       </p>
     </div>
 
-    <div id="map"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"
+      integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </body>
 </html>
